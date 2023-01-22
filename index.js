@@ -24,7 +24,7 @@ let order = (time, work) => {
     }
   });
 };
-order(2000, () => console.log(`${stocks.Fruits[0]} was selected`));
+order(2000, () => console.log(`${stocks.Fruits[0]} was selected`))
 .then(()=>{
-  return order(0000,()=>console.log('production has started'))
+  return order(0,()=>console.log('production has started'))
 })
