@@ -24,3 +24,4 @@ let order = (time, work) => {
     }
   });
 };
+order(2000, () => console.log(`${stocks.Fruits[0]} was selected`));
