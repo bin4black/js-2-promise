@@ -58,4 +58,5 @@ order(2000, () => console.log(`${stocks.Fruits[0]} was selected`))
 .then(()=>{
   return order(2000, ()=>console.log("Serve Ice Cream"))
 })
+
 })
