@@ -11,7 +11,7 @@ let stocks = {
   holder: ['cone', 'cup', 'stick'],
   toppings: ['chocolate', 'peanuts'],
 };
-let is_shop_open = false;
+let is_shop_open = true;
 //
 let order = (time, work) => {
   return new Promise((resolve, reject) => {
@@ -58,5 +58,8 @@ order(2000, () => console.log(`${stocks.Fruits[0]} was selected`)).then(() => {
 
   })
 .catch(() => {
-  console.log('Customer left');
+  console.log('Customer left,ejecucion del .catch');
+})
+.finally(()=>{
+  console.log("--FIN---, el .finally se ejecuta siempre")
 })
