@@ -11,7 +11,7 @@ let stocks = {
   holder: ['cone', 'cup', 'stick'],
   toppings: ['chocolate', 'peanuts'],
 };
-let is_shop_open = true;
+let is_shop_open = false;
 //
 let order = (time, work) => {
   return new Promise((resolve, reject) => {
@@ -20,47 +20,43 @@ let order = (time, work) => {
         resolve(work());
       }, time);
     } else {
-      reject(console.log('Our shop is closed'));
+      reject(console.log('Our shop is closed,ejecucion del reject'));
     }
   });
 };
-order(2000, () => console.log(`${stocks.Fruits[0]} was selected`))
-.then(()=>{
-  return order(0,()=>console.log('production has started'))
- 
+order(2000, () => console.log(`${stocks.Fruits[0]} was selected`)).then(() => {
+  return order(0, () => console.log('production has started'))
+    .then(() => {
+      return order(2000, () => console.log('Fruit has been chopped'));
+    })
 
+    .then(() => {
+      return order(1000, () =>
+        console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} added`)
+      );
+    })
 
-.then(()=>{
-  return order(2000, ()=>console.log("Fruit has been chopped"))
-})
+    .then(() => {
+      return order(1000, () => console.log('start the machine'));
+    })
 
+    .then(() => {
+      return order(2000, () =>
+        console.log(`ice cream placed on ${stocks.holder[1]}`)
+      );
+    })
 
-.then(()=>{
-  return order(1000, ()=>console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} added`))
-})
+    .then(() => {
+      return order(3000, () =>
+        console.log(`${stocks.toppings[0]} as toppings`)
+      );
+    })
 
+    .then(() => {
+      return order(2000, () => console.log('Serve Ice Cream-TERMINADO'));
+    })
 
-.then(()=>{
-  return order(1000, ()=>console.log("start the machine"))
-})
-
-
-.then(()=>{
-  return order(2000, ()=>console.log(`ice cream placed on ${stocks.holder[1]}`))
-})
-
-
-.then(()=>{
-  return order(3000, ()=>console.log(`${stocks.toppings[0]} as toppings`))
-})
-
-
-.then(()=>{
-  return order(2000, ()=>console.log("Serve Ice Cream-TERMINADO"))
-})
-
-.catch(()=>{
-  console.log("Customer left")
-})
-
+  })
+.catch(() => {
+  console.log('Customer left');
 })
